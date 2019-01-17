@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head><title>Chess</title></head>
-    <body>
-        <script src="board.js"></script>
+    <body onload="launch()">
+        <script src="require.js" data-main="board.js"></script>
     </body>
+    <script>
+        function launch() {
+            require(['board'], function(Board) {
+                var board = new Board();
+                board.drawBoard();
+            })
+        };
+    </script>
 </html>
