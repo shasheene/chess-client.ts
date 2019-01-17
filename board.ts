@@ -50,9 +50,11 @@ function getPixelOffsetFromCheckerIndex(board_index: Coordinate): Coordinate {
 }
 
 function isCheckerIndexWhite(board_index: Coordinate): boolean {
-	// Temporarily drawing even/odd columns as dark/white to test application.
-	// TODO: Use correct checkerboard formula.
-	return ((board_index.x_offset % 2) == 0);
+	if ((board_index.x_offset % 2) == 0) {
+		return (board_index.y_offset % 2) == 0;
+	} else {
+		return (board_index.y_offset % 2) != 0;
+	}
 }
 
 window.onload = () => {
