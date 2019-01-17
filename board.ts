@@ -14,9 +14,10 @@ const LIGHT_CHECKER_PATTERN_COLOUR="rgb(200,200,200)";
 type Coordinate = {x_offset: number, y_offset: number};
 
 function mouseDownHandler(event: MouseEvent): void {
-   var x: number = event.x;
-   var y: number = event.y;
-   alert('x=' + x + ' y=' + y);
+   let mouse_pixel_coords = {x_offset: event.x, y_offset: event.y};
+   let checker_index = getCheckerIndexFromPixelOffset(mouse_pixel_coords);
+   alert('mouse_pixel at x=' + mouse_pixel_coords.x_offset + ' y=' + mouse_pixel_coords.y_offset
+        + ' maps to row #'+ checker_index.y_offset + ', column #' + checker_index.x_offset);
 }
 
 /**
@@ -42,10 +43,17 @@ function drawBoard(canvas: HTMLCanvasElement) {
 	}
 }
 
-function getPixelOffsetFromCheckerIndex(board_index: Coordinate): Coordinate {
+function getPixelOffsetFromCheckerIndex(board_coord: Coordinate): Coordinate {
 	return {
-		x_offset: board_index.x_offset * NUM_WIDTH_PIXELS_PER_CHECKER_BOX,
-		y_offset: board_index.y_offset * NUM_HEIGHT_PIXELS_PER_CHECKER_BOX
+		x_offset: board_coord.x_offset * NUM_WIDTH_PIXELS_PER_CHECKER_BOX,
+		y_offset: board_coord.y_offset * NUM_HEIGHT_PIXELS_PER_CHECKER_BOX
+	};
+}
+
+function getCheckerIndexFromPixelOffset(pixel_coord: Coordinate): Coordinate {
+	return {
+		x_offset: Math.floor(pixel_coord.x_offset / NUM_WIDTH_PIXELS_PER_CHECKER_BOX),
+		y_offset: Math.floor(pixel_coord.y_offset / NUM_HEIGHT_PIXELS_PER_CHECKER_BOX)
 	};
 }
 
