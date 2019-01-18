@@ -25,6 +25,9 @@ class Board{
 	 */
 	drawBoard() {
 		let context = this.canvas.getContext("2d");
+		if (context == null) {
+			throw new Error("Context was null");
+		}
 		context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
 		// Loop over each checker square
