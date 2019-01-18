@@ -22,10 +22,8 @@ class Board{
 
 	/**
 	 * Draws board checker pattern, and populates game pieces.
-	 * 
-	 * @param canvas Constructed HTML canvas
 	 */
-	drawBoard(canvas: HTMLCanvasElement) {
+	drawBoard() {
 		let context = this.canvas.getContext("2d");
 		context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -64,10 +62,6 @@ class Board{
 		} else {
 			return (board_index.y_offset % 2) != 0;
 		}
-	}
-
-	start() {
-			this.drawBoard(this.canvas);
 	}
 }
 
