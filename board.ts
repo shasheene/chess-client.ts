@@ -1,7 +1,10 @@
 import {BOARD_ROWS, BOARD_COLUMNS, LIGHT_CHECKER_PATTERN_COLOUR, DARK_CHECKER_PATTERN_COLOUR, NUM_WIDTH_PIXELS_PER_CHECKER_BOX, NUM_HEIGHT_PIXELS_PER_CHECKER_BOX, CANVAS_WIDTH, CANVAS_HEIGHT, Coordinate} from "./constants"
+import {PlayerColor, TurnState} from "./state_enums"
 
 class Board{
 	canvas: HTMLCanvasElement;
+	player_color: PlayerColor;
+	turn_state: TurnState;
 
 	constructor() {
 		this.canvas = <HTMLCanvasElement>document.createElement('canvas');
@@ -11,6 +14,10 @@ class Board{
 		this.canvas.width=CANVAS_WIDTH;
 		this.canvas.height=CANVAS_HEIGHT;
 		document.body.appendChild(this.canvas);
+
+		// TODO: Get this from server
+		this.player_color = PlayerColor.WHITE;
+		this.turn_state = TurnState.NO_PIECE_SELECTED;
 	}
 
 	mouseDownHandler(event: MouseEvent): void {
