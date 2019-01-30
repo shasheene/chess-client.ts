@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head><title>Chess</title></head>
-    <body onload="launch()">
-        <script src="require.js" data-main="board.js"></script>
+        <script type="text/javascript">
+            var require = {
+                baseUrl: './js',
+                paths: {
+                    'board': 'app/board',
+                    'constants': 'app/constants',
+                    'state_enums': 'app/state_enums',
+                },
+                shim: {
+                    
+                },
+            }
+        </script>
+        <script src="js/vendor/requirejs/require.js" data-main="app/main.js"></script>
     </body>
-    <script>
-        function launch() {
-            require(['board'], function(Board) {
-                var board = new Board();
-                board.drawBoard();
-            })
-        };
-    </script>
 </html>
