@@ -123,7 +123,12 @@ class Board{
 		// Loop over each checker square to draw pieces
 		for (let row_index = 0; row_index < BOARD_ROWS; row_index++) {
 			for (let column_index = 0; column_index < BOARD_COLUMNS; column_index++) {
-				let checker_index = {x_offset: column_index, y_offset: row_index};
+				// Flip the drawing of the characters if player is black (the checkerboard is the same layout whichever player you are)
+				let drawing_row_index = row_index;
+				if (message.payload.your_color == "black") {
+					drawing_row_index = BOARD_ROWS - row_index - 1;
+				}
+				let checker_index = {x_offset: column_index, y_offset: drawing_row_index};
 				let checker_pixel_coord = this.getPixelOffsetFromCheckerIndex(checker_index);
 
 				let piece_string = board[row_index][column_index];
